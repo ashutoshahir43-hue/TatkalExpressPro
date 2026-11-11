@@ -31,7 +31,9 @@ jobs:
           gradle-version: '8.9'
 
       - name: Build APK
-        run: gradle -p "$PROJECT_DIR" assembleDebug
+        run: |
+  sed -i 's/gradle-8\.7/gradle-8.9/g' "$PROJECT_DIR/gradle/wrapper/gradle-wrapper.properties"
+  gradle -p "$PROJECT_DIR" assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
